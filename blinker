@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+<?php
+
+require 'vendor/autoload.php';
+
+use PhpGpio\Gpio;
+
+if ('cli' != PHP_SAPI) {
+    echo $msg = "This script must be run using php-cli";
+    throw new \Exception($msg);
+}
+
+if ('root' !== $_SERVER['USER'] || empty($_SERVER['SUDO_USER'])) {
+    echo $msg = "Please run this script as root, using sudo -t ; please check the README file";
+    throw new \Exception($msg);
+}
+
+$pin = (int)$argv[1];
+$value = (int)$argv[2];
+$gpio = new GPIO();
+
+if($pin == 25 && $value == 0)
+    $status = "out";
+elseif($pin == 25 && $value == 1)
+    $status = "in";
+else
+    $status = "out";
+
+$gpio->setup($pin, $status);
+$gpio->output($pin, $value);
+echo $gpio->isExported($pin);
