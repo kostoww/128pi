@@ -9,6 +9,8 @@ if ($result->num_rows > 0) {
             $text = "desk light";
         } elseif ($row['type'] == 17) {
             $text = "led light";
+        }  elseif ($row['type'] == 4) {
+            $text = "xmas light";
         } else {
             $text = "main light";
         }

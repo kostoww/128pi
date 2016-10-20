@@ -30,6 +30,15 @@
             ($row['state'] == 1) ? $isclicked['led']['state'] = "false" : $isclicked['led']['state'] = "true";
         }
     }
+
+    $thirdQuery = "SELECT * FROM `lights` WHERE `type`= 4  ORDER BY `id` DESC LIMIT 1";
+    $resultThirdQuery = $estCon->query($thirdQuery);
+    if ($resultThirdQuery->num_rows > 0) {
+        while($row = $resultThirdQuery->fetch_assoc()) {
+            ($row['state'] == 1) ? $isclicked['xmas']['color'] = "materialize-red" : $isclicked['xmas']['color'] = "light-green";
+            ($row['state'] == 1) ? $isclicked['xmas']['state'] = "false" : $isclicked['xmas']['state'] = "true";
+        }
+    }
     ?>
     <script>
         var myApp = angular.module("myApp", []);
@@ -47,6 +56,8 @@
             $scope.myButton = "<?php echo $isclicked['light']['color']; ?>";
             $scope.isClicked1 = <?php echo $isclicked['led']['state']; ?>;
             $scope.myButton1 = "<?php echo $isclicked['led']['color']; ?>";
+            $scope.isClicked2 = <?php echo $isclicked['xmas']['state']; ?>;
+            $scope.myButton2 = "<?php echo $isclicked['xmas']['color']; ?>";
             $scope.changeBgColor = function(event) {
 
                 if($scope.isClicked == false) {
@@ -173,6 +184,51 @@
 
                 }
             };
+
+            $scope.changeBgColor3 = function(event) {
+
+                if($scope.isClicked2 == false) {
+
+                    var request = $http({
+                        method: "post",
+                        url:  "somefile.php?pin="+event.target.id+"&value=0",
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                    });
+
+                    /* Check whether the HTTP Request is successful or not. */
+                    request.success(function (data) {
+                        $scope.myButton2 = "light-green";
+                        $scope.isClicked2 = true;
+                        Materialize.toast('Изключена!', 1000, 'rounded')
+                        $scope.get_data();
+                    });
+                    request.error(function(serverResponse, status, headers, config) {
+                        alert("failure");
+                    });
+
+                } else {
+
+                    var request = $http({
+                        method: "post",
+                        url:  "somefile.php?pin="+event.target.id+"&value=1",
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                    });
+
+                    /* Check whether the HTTP Request is successful or not. */
+                    request.success(function (data) {
+
+                        $scope.myButton2 = " materialize-red";
+                        $scope.isClicked2 = false;
+                        Materialize.toast('Включена!', 1000, 'rounded')
+                        $scope.get_data();
+                    });
+                    request.error(function(serverResponse, status, headers, config) {
+                        alert("failure");
+                    });
+
+                }
+            };
+
         });
     </script>
 </head>
@@ -186,9 +242,10 @@
         <div class="row ">
             <div >
                 <div >
-                    <div class="col s4"> <a data-ng-click="changeBgColor($event)" class="{{myButton}} btn-large waves-effect waves-light " href="" id="17">light</a> &nbsp;</div>
-                    <div class="col s4"> <a data-ng-click="changeBgColor1($event)" class="{{myButton1}} btn-large waves-effect waves-light " href="" id="2">desk</a> &nbsp;</div>
-                    <div class="col s4"> <a data-ng-click="changeBgColor2($event)" class="btn-large waves-effect waves-light orange" href="" id="25">main</a> &nbsp;</div>
+                    <div class="col s3"> <a data-ng-click="changeBgColor($event)" class="{{myButton}} btn-large waves-effect waves-light " href="" id="17">light</a> &nbsp;</div>
+                    <div class="col s3"> <a data-ng-click="changeBgColor3($event)" class="{{myButton2}} btn-large waves-effect waves-light " href="" id="4">xmas</a> &nbsp;</div>
+                    <div class="col s3"> <a data-ng-click="changeBgColor1($event)" class="{{myButton1}} btn-large waves-effect waves-light " href="" id="2">desk</a> &nbsp;</div>
+                    <div class="col s3"> <a data-ng-click="changeBgColor2($event)" class="btn-large waves-effect waves-light orange" href="" id="25">main</a> &nbsp;</div>
                 </div>
             </div>
 
