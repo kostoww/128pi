@@ -85,7 +85,7 @@ $pin = $_GET['pin'];
 $value = $_GET['value'];
 
 echo exec('sudo ./blinker '.$pin.' '.$value);
-$sql = "INSERT INTO `lights`(`type`, `state`, `date`, `browser`, `os`) VALUES ($pin,$value,'".date('H:m:s d/m/Y')."', '$user_browser', '$user_os' )";
+$sql = "INSERT INTO `lights`(`type`, `state`, `date`, `browser`, `os`) VALUES ($pin,$value,'".date('H:m d/m/y')."', '$user_browser', '$user_os' )";
 
 if ($estCon->query($sql) === TRUE) {
     echo "New record created successfully";

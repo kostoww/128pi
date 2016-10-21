@@ -9,6 +9,14 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+
+
     <?php
     include("config.php");
     $isclicked[][] = "";
@@ -242,10 +250,10 @@
         <div class="row ">
             <div >
                 <div >
-                    <div class="col s3"> <a data-ng-click="changeBgColor($event)" class="{{myButton}} btn-large waves-effect waves-light " href="" id="17">light</a> &nbsp;</div>
-                    <div class="col s3"> <a data-ng-click="changeBgColor3($event)" class="{{myButton2}} btn-large waves-effect waves-light " href="" id="4">xmas</a> &nbsp;</div>
-                    <div class="col s3"> <a data-ng-click="changeBgColor1($event)" class="{{myButton1}} btn-large waves-effect waves-light " href="" id="2">desk</a> &nbsp;</div>
-                    <div class="col s3"> <a data-ng-click="changeBgColor2($event)" class="btn-large waves-effect waves-light orange" href="" id="25">main</a> &nbsp;</div>
+                    <div data-ng-click="changeBgColor($event)"  style="margin-top:10px; height: 70px; line-height: 70px;" class="btn col s12 m6 l3 {{myButton}}  waves-effect waves-light " id="17">light</div>
+                    <div data-ng-click="changeBgColor3($event)" style="margin-top:10px; height: 70px; line-height: 70px;" class="btn col s12 m6 l3 {{myButton2}}  waves-effect waves-light " id="4">xmas</div>
+                    <div data-ng-click="changeBgColor1($event)" style="margin-top:10px; height: 70px; line-height: 70px;" class="btn col s12 m6 l3  {{myButton1}}  waves-effect waves-light" id="2">desk</div>
+                    <div data-ng-click="changeBgColor2($event)" style="margin-top:10px; height: 70px; line-height: 70px;" class="btn col s12 m6 l3  btnwaves-effect waves-light orange" id="25">main</div>
                 </div>
             </div>
 
@@ -254,7 +262,7 @@
 
               <div ng-init="get_data()">
                 <div ng-repeat="clicks in clicks">
-                    <a href="#" class="collection-item left-align"><b>{{clicks.browser}}</b>/<b>{{clicks.os}}</b> {{clicks.state}} {{clicks.type}}<span class="badge">{{clicks.date}}</span></a>
+                    <a href="#" class="collection-item left-align"><b>{{clicks.os}}</b> {{clicks.state}} {{clicks.type}}<span class="badge">{{clicks.date}}</span></a>
                 </div>
               </div>
 
