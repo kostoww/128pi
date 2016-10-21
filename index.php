@@ -250,16 +250,16 @@
         <div class="row ">
             <div >
                 <div >
-                    <div data-ng-click="changeBgColor($event)"  style="margin-top:10px; height: 70px; line-height: 70px;" class="btn col s12 m6 l3 {{myButton}}  waves-effect waves-light " id="17">light</div>
-                    <div data-ng-click="changeBgColor3($event)" style="margin-top:10px; height: 70px; line-height: 70px;" class="btn col s12 m6 l3 {{myButton2}}  waves-effect waves-light " id="4">xmas</div>
-                    <div data-ng-click="changeBgColor1($event)" style="margin-top:10px; height: 70px; line-height: 70px;" class="btn col s12 m6 l3  {{myButton1}}  waves-effect waves-light" id="2">desk</div>
-                    <div data-ng-click="changeBgColor2($event)" style="margin-top:10px; height: 70px; line-height: 70px;" class="btn col s12 m6 l3  btnwaves-effect waves-light orange" id="25">main</div>
+                    <div data-ng-click="changeBgColor($event)" class="mainbutton btn col s12 m6 l3 {{myButton}}  waves-effect waves-light " id="17">light</div>
+                    <div data-ng-click="changeBgColor3($event)" class="mainbutton btn col s12 m6 l3 {{myButton2}}  waves-effect waves-light " id="4">xmas</div>
+                    <div data-ng-click="changeBgColor1($event)" class="mainbutton btn col s12 m6 l3  {{myButton1}}  waves-effect waves-light" id="2">desk</div>
+                    <div data-ng-click="changeBgColor2($event)" class="mainbutton btn col s12 m6 l3  btnwaves-effect waves-light orange" id="25">main</div>
                 </div>
             </div>
 
         </div>
           <div class="collection col s12 center">`
-
+              <h6 class="header center orange-text">History</h6>
               <div ng-init="get_data()">
                 <div ng-repeat="clicks in clicks">
                     <a href="#" class="collection-item left-align"><b>{{clicks.os}}</b> {{clicks.state}} {{clicks.type}}<span class="badge">{{clicks.date}}</span></a>
@@ -273,8 +273,7 @@
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
+  <script src="js/materialize.min.js"></script>
   <script src="js/init.js"></script>
 
   </body>
